@@ -28,7 +28,7 @@ A Java-based real estate management system with MySQL database integration for m
 1. **Clone the repository**
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/PushkarDesai-06/RealEstateProject.git
    cd RealEstateProject
    ```
 
