@@ -15,4 +15,11 @@ public class AvgTimeOnMarketClass {
     this.avg_time_on_market = avg_time_on_market;
   }
 
+  @Override
+  public String toString() {
+    return "AvgTimeOnMarketClass [avg_time_on_market=" + avg_time_on_market + ", getAvg_time_on_market()="
+        + getAvg_time_on_market() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
+        + super.toString() + "]";
+  }
+
 }

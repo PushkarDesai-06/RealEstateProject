@@ -70,4 +70,19 @@ public class InqPerPropLastMonthClass {
     this.created_at = created_at;
   }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("InqPerPropLastMonthClass{");
+        sb.append("buyer_email=").append(buyer_email);
+        sb.append(", agent_name=").append(agent_name);
+        sb.append(", property_title=").append(property_title);
+        sb.append(", neighborhood=").append(neighborhood);
+        sb.append(", message=").append(message);
+        sb.append(", status=").append(status);
+        sb.append(", created_at=").append(created_at);
+        sb.append('}');
+        return sb.toString();
+    }
+
 }

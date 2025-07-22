@@ -15,23 +15,32 @@ import RealEstateMaven.Queries.SqlQueries;
 import io.github.cdimascio.dotenv.Dotenv;
 
 public class client {
-  static Dotenv dotenv = Dotenv.load();
+  final static Dotenv dotenv = Dotenv.load();
 
   static String db_url = dotenv.get("DB_URL");
   static String db_user = dotenv.get("DB_USER");
   static String db_pass = dotenv.get("DB_PASSWORD");
 
-  public static void main(String[] args) {
-    System.out.println(db_url);
-    System.out.println(db_user);
-    System.out.println(db_pass);
+  public static void main(String[] args) throws RuntimeException {
+    if(db_url == null || db_user == null || db_pass == null){
+      System.out.println("Check your .env file");
+      return;
+    }
+
+    ArrayList<ResponseTimeMetricsClass> list = getResponseTimeMetrics();
+    for (ResponseTimeMetricsClass var : list) {
+      System.out.println(var.toString());
+    }
+
+    System.exit(0);
+
   }
 
   public static Connection getConnection(String db_url, String db_username, String db_pass) throws RuntimeException {
 
     try {
 
-      Class.forName("com.mysql.cj.jdbc.Driver");
+      // Class.forName("com.mysql.cj.jdbc.Driver");
       return DriverManager.getConnection(db_url, db_username, db_pass);
     } catch (Exception e) {
       System.out.println("Error : \n" + e.getMessage());
@@ -39,7 +48,7 @@ public class client {
     }
   }
 
-  // Functions for Requirements
+  //? Functions for Requirements
 
   // 1. Inquiry Response Time metrics per agent
 

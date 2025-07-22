@@ -90,4 +90,21 @@ public class OffersPendingAcceptanceClass {
     this.offered_by_buyer = offered_by_buyer;
   }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("OffersPendingAcceptanceClass{");
+        sb.append("id=").append(id);
+        sb.append(", buyer_id=").append(buyer_id);
+        sb.append(", agent_id=").append(agent_id);
+        sb.append(", property_id=").append(property_id);
+        sb.append(", status=").append(status);
+        sb.append(", created_at=").append(created_at);
+        sb.append(", final_date=").append(final_date);
+        sb.append(", price=").append(price);
+        sb.append(", offered_by_buyer=").append(offered_by_buyer);
+        sb.append('}');
+        return sb.toString();
+    }
+
 }
