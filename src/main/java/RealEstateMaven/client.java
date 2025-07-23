@@ -10,6 +10,7 @@ import RealEstateMaven.Classes.*;
 import RealEstateMaven.Queries.SqlQueries;
 import io.github.cdimascio.dotenv.Dotenv;
 
+
 public class client {
   final static Dotenv dotenv = Dotenv.load();
 
@@ -23,8 +24,8 @@ public class client {
       return;
     }
 
-    ArrayList<ActiveListingsClass> list = getActiveListings("Downtown" , "apartment");
-    for (ActiveListingsClass var : list) {
+    ArrayList<AgentPerformanceClass> list = getAgentPerformanceByClosedDeals();
+    for (AgentPerformanceClass var : list) {
       System.out.println(var.toString());
     }
 
@@ -44,7 +45,7 @@ public class client {
     }
   }
 
-  //? Functions for Requirements
+  // Functions for Requirements
 
   // 1. Inquiry Response Time metrics per agent
 
@@ -228,5 +229,30 @@ public class client {
     }
 
   }
+
+    // 7. Agent performance by closed deals
+
+    public static ArrayList<AgentPerformanceClass> getAgentPerformanceByClosedDeals() throws RuntimeException {
+      ArrayList<AgentPerformanceClass> res = new ArrayList<>();
+      String query = SqlQueries.GET_AGENT_PERFORMANCE_BY_CLOSED_DEALS;
+      try(
+        Connection conn = getConnection(db_url, db_user, db_pass);
+        PreparedStatement pst = conn.prepareStatement(query);
+        ){
+        try(ResultSet rs = pst.executeQuery()){
+          while(rs.next()){
+            res.add(new AgentPerformanceClass(
+                rs.getString("id"),
+                rs.getString("name"),
+                rs.getString("phone_number"),
+                rs.getInt("properties_sold")
+            ));
+          }
+        }
+      }catch (SQLException e){
+        throw new RuntimeException("Failed Fetching", e);
+      }
+        return res;
+    }
 
 }

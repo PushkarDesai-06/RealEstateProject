@@ -71,4 +71,14 @@ public final class SqlQueries {
       WHERE
       	status = 'pending_acceptance';
       """;
+
+    public static final String GET_AGENT_PERFORMANCE_BY_CLOSED_DEALS = """
+      SELECT
+        id,
+        name,
+        phone_number,
+        properties_sold
+      FROM
+        agents;
+      """;
 }
