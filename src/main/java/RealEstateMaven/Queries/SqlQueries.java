@@ -15,12 +15,13 @@ public final class SqlQueries {
       GROUP BY
         agent_id
       ORDER BY
-        name
+        name;
       """;
 
   public static final String GET_ACTIVE_LISTINGS = """
       SELECT *
-      FROM properties
+      FROM
+        properties
       WHERE
         neighborhood = ? AND type= ? AND sold_date IS NULL;
       """;
@@ -28,15 +29,14 @@ public final class SqlQueries {
   public static final String GET_AVG_TIME_ON_MARKET = """
       SELECT AVG(timestampdiff(Minute , created_at , sold_date)) avg_time_on_market
       FROM properties;
-          """;
+      """;
 
   public static final String GET_PRICE_TREND = """
       SELECT
         neighborhood,
         ROUND(AVG(listing_price) , 2) avg_price
       FROM properties
-      GROUP BY neighborhood
-      ;
+      GROUP BY neighborhood;
       """;
 
   public static final String GET_INQUIRIES_PER_PROPERTY_LAST_MONTH = """
