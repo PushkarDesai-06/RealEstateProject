@@ -52,7 +52,6 @@ public class client {
     ArrayList<ResponseTimeMetricsClass> res = new ArrayList<>();
     String query = SqlQueries.GET_RESPONSE_TIME_METRICS;
     try (
-
         Connection conn = getConnection(db_url, db_user, db_pass);
         PreparedStatement pst = conn.prepareStatement(query);) {
       try (ResultSet rs = pst.executeQuery()) {
@@ -128,8 +127,7 @@ public class client {
         while (rs.next()) {
           avgTime = rs.getInt("avg_time_on_market");
         }
-        AvgTimeOnMarketClass at = new AvgTimeOnMarketClass(avgTime);
-        return at;
+          return new AvgTimeOnMarketClass(avgTime);
       }
 
     } catch (SQLException e) {
@@ -150,11 +148,10 @@ public class client {
 
       try (ResultSet rs = pst.executeQuery();) {
 
-        String avg_price;
-        String neighborhood;
         while (rs.next()) {
           list.add(new PriceTrendClass(
-                  rs.getString("avg_price") , rs.getString("neighborhood")
+                  rs.getString("avg_price"),
+                  rs.getString("neighborhood")
           ));
         }
         return list;
@@ -168,7 +165,7 @@ public class client {
 
   // 5. Inquiries per property last month
 
-  public static ArrayList<InqPerPropLastMonthClass> getInquriesPerPropertiesLastMonth() throws RuntimeException {
+  public static ArrayList<InqPerPropLastMonthClass> getInquiriesPerPropertiesLastMonth() throws RuntimeException {
     ArrayList<InqPerPropLastMonthClass> res = new ArrayList<>();
     String query = SqlQueries.GET_INQUIRIES_PER_PROPERTY_LAST_MONTH;
     try (
@@ -178,7 +175,6 @@ public class client {
 
       try (ResultSet rs = pst.executeQuery();) {
 
-        int avgTime = 0;
         while (rs.next()) {
           res.add(
               new InqPerPropLastMonthClass(
@@ -211,7 +207,6 @@ public class client {
 
       try (ResultSet rs = pst.executeQuery();) {
 
-        int avgTime = 0;
         while (rs.next()) {
           res.add(
               new OffersPendingAcceptanceClass(
