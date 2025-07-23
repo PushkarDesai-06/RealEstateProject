@@ -4,6 +4,17 @@ public class ActiveListingsClass {
 
   private String id, neighbourhood, title, description, type, created_at, listing_price, address;
 
+  public ActiveListingsClass(String id, String neighbourhood, String title, String description, String type, String created_at, String listing_price, String address) {
+    this.id = id;
+    this.neighbourhood = neighbourhood;
+    this.title = title;
+    this.description = description;
+    this.type = type;
+    this.created_at = created_at;
+    this.listing_price = listing_price;
+    this.address = address;
+  }
+
   public String getId() {
     return id;
   }
@@ -68,23 +79,17 @@ public class ActiveListingsClass {
     this.address = address;
   }
 
-  public ActiveListingsClass(String id, String neighbourhood, String title, String description,
-      String type, String created_at, String listing_price, String address) {
-    this.id = id;
-    this.neighbourhood = neighbourhood;
-    this.title = title;
-    this.description = description;
-    this.type = type;
-    this.created_at = created_at;
-    this.listing_price = listing_price;
-    this.address = address;
-  }
-
   @Override
   public String toString() {
-    return "ActiveListingsClass [id=" + id + ", neighbourhood=" + neighbourhood + ", title=" + title
-        + ", description=" + description + ", type=" + type + ", created_at=" + created_at + ", listing_price="
-        + listing_price + ", address=" + address + "]";
+    return "ActiveListingsClass{" +
+            "id='" + id + '\'' +
+            ", neighbourhood='" + neighbourhood + '\'' +
+            ", title='" + title + '\'' +
+            ", description='" + description + '\'' +
+            ", type='" + type + '\'' +
+            ", created_at='" + created_at + '\'' +
+            ", listing_price='" + listing_price + '\'' +
+            ", address='" + address + '\'' +
+            '}';
   }
-
 }

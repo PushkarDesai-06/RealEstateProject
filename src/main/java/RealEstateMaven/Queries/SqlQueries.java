@@ -31,7 +31,12 @@ public final class SqlQueries {
           """;
 
   public static final String GET_PRICE_TREND = """
-
+      SELECT
+        neighborhood,
+        ROUND(AVG(listing_price) , 2) avg_price
+      FROM properties
+      GROUP BY neighborhood
+      ;
       """;
 
   public static final String GET_INQUIRIES_PER_PROPERTY_LAST_MONTH = """

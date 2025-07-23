@@ -6,11 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import RealEstateMaven.Classes.ActiveListingsClass;
-import RealEstateMaven.Classes.AvgTimeOnMarketClass;
-import RealEstateMaven.Classes.InqPerPropLastMonthClass;
-import RealEstateMaven.Classes.OffersPendingAcceptanceClass;
-import RealEstateMaven.Classes.ResponseTimeMetricsClass;
+import RealEstateMaven.Classes.*;
 import RealEstateMaven.Queries.SqlQueries;
 import io.github.cdimascio.dotenv.Dotenv;
 
@@ -27,8 +23,8 @@ public class client {
       return;
     }
 
-    ArrayList<ResponseTimeMetricsClass> list = getResponseTimeMetrics();
-    for (ResponseTimeMetricsClass var : list) {
+    ArrayList<ActiveListingsClass> list = getActiveListings("Downtown" , "apartment");
+    for (ActiveListingsClass var : list) {
       System.out.println(var.toString());
     }
 
@@ -144,9 +140,9 @@ public class client {
 
   // 4. Price trend analysis for a region
 
-  public static AvgTimeOnMarketClass getPriceTrend(String neighborhood) throws RuntimeException {
-    // ! INCOMPLETE METHOD!!!!!
-    String query = SqlQueries.GET_AVG_TIME_ON_MARKET;
+  public static ArrayList<PriceTrendClass> getPriceTrend() throws RuntimeException {
+    String query = SqlQueries.GET_PRICE_TREND;
+    ArrayList<PriceTrendClass> list = new ArrayList<>();
     try (
 
         Connection conn = getConnection(db_url, db_user, db_pass);
@@ -154,12 +150,14 @@ public class client {
 
       try (ResultSet rs = pst.executeQuery();) {
 
-        int avgTime = 0;
+        String avg_price;
+        String neighborhood;
         while (rs.next()) {
-          avgTime = rs.getInt("avg_time_on_market");
+          list.add(new PriceTrendClass(
+                  rs.getString("avg_price") , rs.getString("neighborhood")
+          ));
         }
-        AvgTimeOnMarketClass at = new AvgTimeOnMarketClass(avgTime);
-        return at;
+        return list;
       }
 
     } catch (SQLException e) {
