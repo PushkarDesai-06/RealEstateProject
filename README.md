@@ -1,112 +1,167 @@
-# Real Estate Platform
+# Real Estate Management Platform
 
-A Java-based real estate management system with MySQL database integration for managing properties, agents, buyers, and market analytics.
+A comprehensive Java-based real estate management system with MySQL database integration for managing properties, agents, buyers, and market analytics.
 
-## Features
+## 🏠 Features
 
-- **Response Time Metrics**: Track agent inquiry response times
-- **Active Listings**: View listings by neighborhood and property type
-- **Market Analytics**: Average time on market calculations
-- **Price Trend Analysis**: Regional price trend monitoring
-- **Inquiry Management**: Track property inquiries from last month
+### Core Analytics & Reporting
+- **Response Time Metrics**: Track agent inquiry response times and performance
+- **Active Listings Management**: View and filter listings by neighborhood and property type
+- **Market Analytics**: Calculate average time on market for properties
+- **Price Trend Analysis**: Monitor regional price trends and market dynamics
+- **Inquiry Tracking**: Track property inquiries from the last month
 - **Offer Management**: Monitor pending offer acceptances
+- **Agent Performance**: Analyze agent performance based on closed deals
 
-## Prerequisites
+### Database Operations
+- MySQL database connectivity with connection pooling
+- Prepared statements for secure SQL operations
+- Environment-based configuration management
+- Comprehensive error handling and logging
 
-- Java 17 or higher
-- MySQL Database
-- Maven (for dependency management)
-- IDE (IntelliJ IDEA, Eclipse, or VS Code recommended)
+## 🛠️ Prerequisites
 
-## Dependencies
+- **Java**: Java 17 or higher
+- **Database**: MySQL 8.0 or higher
+- **Build Tool**: Maven 3.6 or higher
+- **IDE**: IntelliJ IDEA, Eclipse, or VS Code (recommended)
 
-- MySQL Connector/J
-- dotenv-java for environment variable management
+## 📦 Dependencies
 
-## Setup
+- **MySQL Connector/J**: Database connectivity
+- **dotenv-java**: Environment variable management for secure configuration
 
-1. **Clone the repository**
+## 🚀 Setup Instructions
 
-   ```bash
-   git clone https://github.com/PushkarDesai-06/RealEstateProject.git
-   cd RealEstateProject
-   ```
-
-2. **Database Setup**
-
-   - Create a MySQL database
-   - Run the provided SQL schema files
-   - Ensure proper tables are created for properties, agents, buyers, inquiries, and offers
-
-3. **Environment Configuration**
-   Create a `.env` file in the root directory:
-
-   ```
-   DB_URL=jdbc:mysql://localhost:3306/your_database_name
-   DB_USER=your_username
-   DB_PASSWORD=your_password
-   ```
-
-4. **Install Dependencies**
-   ```bash
-   mvn install
-   ```
-
-## Project Structure
-
-```
-RealEstatePlatform/
-├── src/
-│   └── java/
-│       ├── client.java              # Main client class
-│       ├── Classes/                 # Data model classes
-│       └── Queries/
-│           └── SqlQueries.java      # SQL query definitions
-├── .env                            # Environment variables
-└── README.md
-```
-
-## RUN COMMAND
-
+### 1. Clone the Repository
 ```bash
-mvn compile exec:java -Dexec.mainClass="RealEstatePlatform.client"
+git clone https://github.com/PushkarDesai-06/RealEstateProject.git
+cd RealEstateProject
 ```
 
-Alternative using JAR:
+### 2. Database Setup
+1. Create a MySQL database for the project
+2. Set up the required tables (properties, agents, buyers, inquiries, offers, etc.)
+3. Populate with sample data if needed
 
+### 3. Environment Configuration
+Create a `.env` file in the project root directory:
+```env
+DB_URL=jdbc:mysql://localhost:3306/your_database_name
+DB_USER=your_username
+DB_PASSWORD=your_password
+```
+
+### 4. Build the Project
 ```bash
-mvn package
-java -jar target/realestate-platform-1.0.jar
+mvn clean compile
 ```
 
-## Available Functions
+### 5. Run the Application
+```bash
+mvn exec:java -Dexec.mainClass="RealEstateMaven.client"
+```
 
-1. **getResponseTimeMetrics()** - Get inquiry response time metrics per agent
-2. **getActiveListings(neighborhood, type)** - Retrieve active listings by area and property type
-3. **getAvgTimeOnMarket()** - Calculate average time properties stay on market
-4. **getPriceTrend(neighborhood)** - Analyze price trends for specific regions
-5. **getInquriesPerPropertiesLastMonth()** - Get inquiries from the last month
-6. **getOffersPendingAcceptance()** - View all pending offers
+## 📋 Available Operations
 
-## Database Schema Requirements
-
-Ensure your database includes tables for:
-
-- Properties (id, title, description, type, neighborhood, listing_price, address, created_at)
-- Agents (id, name)
-- Buyers (id, email)
-- Inquiries (buyer_email, agent_name, property_title, message, status, created_at)
-- Offers (id, buyer_id, agent_id, property_id, status, price, offered_by_buyer, created_at, final_date)
-
-## Usage Example
-
+### 1. Response Time Metrics
 ```java
-// Get response time metrics
 ArrayList<ResponseTimeMetricsClass> metrics = client.getResponseTimeMetrics();
+```
+Retrieves agent response time statistics for performance evaluation.
 
-// Get active listings for downtown condos
-ArrayList<ActiveListingsClass> listings = client.getActiveListings("Downtown", "Condo");
+### 2. Active Listings Query
+```java
+ArrayList<ActiveListingsClass> listings = client.getActiveListings("Downtown", "Apartment");
+```
+Filters active property listings by neighborhood and property type.
 
-// Get average market time
+### 3. Market Time Analysis
+```java
 AvgTimeOnMarketClass avgTime = client.getAvgTimeOnMarket();
 ```
+Calculates the average time properties spend on the market.
+
+### 4. Price Trend Analysis
+```java
+ArrayList<PriceTrendClass> trends = client.getPriceTrend();
+```
+Analyzes price trends across different regions and neighborhoods.
+
+### 5. Recent Inquiries
+```java
+ArrayList<InqPerPropLastMonthClass> inquiries = client.getInquiriesPerPropertiesLastMonth();
+```
+Retrieves property inquiries from the last month for follow-up.
+
+### 6. Pending Offers
+```java
+ArrayList<OffersPendingAcceptanceClass> offers = client.getOffersPendingAcceptance();
+```
+Lists all offers that are pending acceptance.
+
+### 7. Agent Performance
+```java
+ArrayList<AgentPerformanceClass> performance = client.getAgentPerformanceByClosedDeals();
+```
+Evaluates agent performance based on successfully closed deals.
+
+## 🏗️ Project Structure
+
+```
+RealEstateProject/
+├── src/
+│   └── main/
+│       └── java/
+│           └── RealEstateMaven/
+│               ├── client.java              # Main application entry point
+│               ├── Classes/                 # Data model classes
+│               │   ├── ActiveListingsClass.java
+│               │   ├── AgentPerformanceClass.java
+│               │   ├── AvgTimeOnMarketClass.java
+│               │   ├── InqPerPropLastMonthClass.java
+│               │   ├── OffersPendingAcceptanceClass.java
+│               │   ├── PriceTrendClass.java
+│               │   └── ResponseTimeMetricsClass.java
+│               └── Queries/
+│                   └── SqlQueries.java      # SQL query definitions
+├── pom.xml                                  # Maven configuration
+└── README.md                               # This file
+```
+
+## 🔧 Configuration
+
+### Database Configuration
+The application uses environment variables for database configuration:
+- `DB_URL`: JDBC connection URL
+- `DB_USER`: Database username
+- `DB_PASSWORD`: Database password
+
+### Error Handling
+The application includes comprehensive error handling for:
+- Database connection failures
+- SQL execution errors
+- Missing environment variables
+- Data validation issues
+
+## 🚦 Usage Examples
+
+### Basic Usage
+```java
+public class Example {
+    public static void main(String[] args) {
+        // Get agent performance data
+        ArrayList<AgentPerformanceClass> agents = client.getAgentPerformanceByClosedDeals();
+        for (AgentPerformanceClass agent : agents) {
+            System.out.println(agent.toString());
+        }
+        
+        // Get active listings in specific area
+        ArrayList<ActiveListingsClass> listings = client.getActiveListings("Downtown", "House");
+        listings.forEach(System.out::println);
+    }
+}
+```
+---
+
+**Note**: Make sure to configure your `.env` file properly before running the application. The system requires valid database credentials to function correctly.
