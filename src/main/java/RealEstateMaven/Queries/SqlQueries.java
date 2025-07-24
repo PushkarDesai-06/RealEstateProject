@@ -62,8 +62,6 @@ public final class SqlQueries {
       """;
 
   public static final String GET_OFFERS_PENDING_ACCEPTANCE = """
-      SELECT * FROM Offers;
-
       SELECT
       	*
       FROM
