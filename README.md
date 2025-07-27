@@ -41,9 +41,7 @@ cd RealEstateProject
 ```
 
 ### 2. Database Setup
-1. Create a MySQL database for the project
-2. Set up the required tables (properties, agents, buyers, inquiries, offers, etc.)
-3. Populate with sample data if needed
+1. Run the included SQL script to create the database schema and populate it with sample data which is named as RealEstateSchemaAndData.sql
 
 ### 3. Environment Configuration
 Create a `.env` file in the project root directory:
