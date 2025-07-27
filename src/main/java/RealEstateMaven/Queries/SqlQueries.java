@@ -67,7 +67,7 @@ public final class SqlQueries {
       FROM
       	offers
       WHERE
-      	status = 'pending_acceptance';
+      	status = 'pending_response';
       """;
 
     public static final String GET_AGENT_PERFORMANCE_BY_CLOSED_DEALS = """

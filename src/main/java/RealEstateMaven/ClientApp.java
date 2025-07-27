@@ -17,8 +17,9 @@ public class ClientApp {
       return;
     }
 
-    ArrayList<AgentPerformanceClass> list = RealEstateService.getAgentPerformanceByClosedDeals(db_url, db_user, db_pass);
-    for (AgentPerformanceClass var : list) {
+
+    ArrayList<InqPerPropLastMonthClass> inquiries = RealEstateService.getInquiriesPerPropertiesLastMonth(db_url, db_user, db_pass);
+    for (InqPerPropLastMonthClass var : inquiries) {
       System.out.println(var.toString());
     }
 
